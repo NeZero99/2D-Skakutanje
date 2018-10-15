@@ -11,26 +11,31 @@ public class Spawnowanje : MonoBehaviour {
     public float opadajuceVreme;
     public float minVreme = 0.65f;
 
+    private Rotacija rotacija;
+
 	// Use this for initialization
 	void Start () {
-		
+        rotacija = GameObject.FindObjectOfType<Rotacija>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(vremeStvaranja <= 0)
+        if (!rotacija.smrt)
         {
-            int rand = Random.Range(0, mestaZaStvaranje.Length);
-            Instantiate(mestaZaStvaranje[rand], transform.position, Quaternion.identity);
-            vremeStvaranja = pocetnoVremeStvaranja;
-            if(pocetnoVremeStvaranja > minVreme)
+            if (vremeStvaranja <= 0)
             {
-                pocetnoVremeStvaranja -= opadajuceVreme;
+                int rand = Random.Range(0, mestaZaStvaranje.Length);
+                Instantiate(mestaZaStvaranje[rand], transform.position, Quaternion.identity);
+                vremeStvaranja = pocetnoVremeStvaranja;
+                if (pocetnoVremeStvaranja > minVreme)
+                {
+                    pocetnoVremeStvaranja -= opadajuceVreme;
+                }
             }
-        }
-        else
-        {
-            vremeStvaranja -= Time.deltaTime;
+            else
+            {
+                vremeStvaranja -= Time.deltaTime;
+            }
         }
 	}
 }

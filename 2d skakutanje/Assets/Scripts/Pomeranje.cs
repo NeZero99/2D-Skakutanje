@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pomeranje : MonoBehaviour {
 
@@ -11,10 +12,15 @@ public class Pomeranje : MonoBehaviour {
     private bool skociti = true;
     public float brzinaPada = 2.5f;
 
-	// Use this for initialization
-	void Start () {
+    public Text score;
+    private int scoreBrojac;
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody2D>();
-	}
+        scoreBrojac = 0;
+        score.text = scoreBrojac.ToString();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -62,6 +68,22 @@ public class Pomeranje : MonoBehaviour {
         {
             Debug.Log("ne moze");
             skociti = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Neprijatelj"))
+        {
+            scoreBrojac++;
+            score.text = scoreBrojac.ToString();
+            Debug.Log(scoreBrojac.ToString());
+
+            if(scoreBrojac > PlayerPrefs.GetInt("HighScore"))
+            {
+                PlayerPrefs.SetInt("HighScore", scoreBrojac);
+                //enejblovati tekst new high score
+            }
         }
     }
 }

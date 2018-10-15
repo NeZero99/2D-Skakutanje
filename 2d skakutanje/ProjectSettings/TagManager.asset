@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Zemlja
+  - Neprijatelj
+  - Efekti
   layers:
   - Default
   - TransparentFX
