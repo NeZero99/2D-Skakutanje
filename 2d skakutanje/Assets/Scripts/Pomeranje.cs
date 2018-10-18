@@ -14,12 +14,14 @@ public class Pomeranje : MonoBehaviour {
 
     public Text score;
     private int scoreBrojac;
+    public Text nhs;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         scoreBrojac = 0;
         score.text = scoreBrojac.ToString();
+        nhs.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -82,7 +84,7 @@ public class Pomeranje : MonoBehaviour {
             if(scoreBrojac > PlayerPrefs.GetInt("HighScore"))
             {
                 PlayerPrefs.SetInt("HighScore", scoreBrojac);
-                //enejblovati tekst new high score
+                nhs.enabled = true;
             }
         }
     }
