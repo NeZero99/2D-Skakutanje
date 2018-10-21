@@ -16,6 +16,8 @@ public class Pomeranje : MonoBehaviour {
     private int scoreBrojac;
     public Text nhs;
 
+    public Animator animator;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -26,7 +28,7 @@ public class Pomeranje : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     private void FixedUpdate()
@@ -62,6 +64,7 @@ public class Pomeranje : MonoBehaviour {
         {
             Debug.Log("moze");
             skociti = true;
+            animator.SetBool("MogucSkok", skociti);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -70,6 +73,7 @@ public class Pomeranje : MonoBehaviour {
         {
             Debug.Log("ne moze");
             skociti = false;
+            animator.SetBool("MogucSkok", skociti);
         }
     }
 
