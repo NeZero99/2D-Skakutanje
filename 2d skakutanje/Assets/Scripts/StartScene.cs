@@ -18,7 +18,7 @@ public class StartScene : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Nova Scena");
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("MainScene");
         }
 	}
 }
