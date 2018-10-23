@@ -7,8 +7,10 @@ public class Kamera : MonoBehaviour {
     public GameObject zaPracenje;
     private Vector3 razlika;
 
-	// Use this for initialization
-	void Start () {
+    //public float horizontalResolution = 1920;
+
+    // Use this for initialization
+    void Start () {
         razlika = transform.position - zaPracenje.transform.position;
 	}
 	
@@ -22,4 +24,10 @@ public class Kamera : MonoBehaviour {
         //transform.position = razlika + zaPracenje.transform.position;
         transform.position = new Vector3((razlika.x + zaPracenje.transform.position.x), 0, (razlika.z + zaPracenje.transform.position.z));
     }
+    /* kao ono za optimizaciju kamere kada se menja rezolucija
+    private void OnGUI()
+    {
+        float currentAspect = (float)Screen.width / (float)Screen.height;
+        Camera.main.orthographicSize = horizontalResolution / currentAspect / 200;
+    }*/
 }

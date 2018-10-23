@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SmrtIgraca : MonoBehaviour {
 
     private Rotacija rotacija;
+
+    public GameObject SmrtEkran;
     
 
     private void Start()
@@ -20,6 +22,9 @@ public class SmrtIgraca : MonoBehaviour {
             collision.gameObject.SetActive(false);
             rotacija.smrt = true;
             Debug.Log("Game Over");
+
+            //SmrtEkran.SetActive(true);
+            //Instantiate(SmrtEkran, transform.position, Quaternion.identity);
         }
     }
 }
