@@ -15,6 +15,7 @@ public class Pomeranje : MonoBehaviour {
     public Text score;
     private int scoreBrojac;
     public Text nhs;
+    private UI uibr;
 
     public Animator animator;
 
@@ -24,6 +25,8 @@ public class Pomeranje : MonoBehaviour {
         scoreBrojac = 0;
         score.text = scoreBrojac.ToString();
         nhs.enabled = false;
+
+        uibr = GameObject.FindObjectOfType<UI>();
     }
 	
 	// Update is called once per frame
@@ -84,8 +87,9 @@ public class Pomeranje : MonoBehaviour {
             scoreBrojac++;
             score.text = scoreBrojac.ToString();
             Debug.Log(scoreBrojac.ToString());
+            uibr.UIbrojac = scoreBrojac;
 
-            if(scoreBrojac > PlayerPrefs.GetInt("HighScore"))
+            if (scoreBrojac > PlayerPrefs.GetInt("HighScore"))//dodati restart hs-a
             {
                 PlayerPrefs.SetInt("HighScore", scoreBrojac);
                 nhs.enabled = true;

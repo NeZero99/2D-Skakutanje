@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class SmrtIgraca : MonoBehaviour {
 
     private Rotacija rotacija;
-
-    public GameObject SmrtEkran;
     
 
     private void Start()
@@ -19,12 +17,13 @@ public class SmrtIgraca : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.SetActive(false);
-            rotacija.smrt = true;
-            Debug.Log("Game Over");
 
-            //SmrtEkran.SetActive(true);
-            //Instantiate(SmrtEkran, transform.position, Quaternion.identity);
+
+            rotacija.smrt = true;
+            //collision.gameObject.SetActive(false);
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>;
+            rb.isKinematic();
+            Debug.Log("Game Over");
         }
     }
 }

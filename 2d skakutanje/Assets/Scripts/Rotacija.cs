@@ -9,11 +9,15 @@ public class Rotacija : MonoBehaviour {
     private float razlika;
     public bool smrt = false;
 
-	// Use this for initialization
-	void Start () {
+    private GameObject SmrtEkran;
+
+    // Use this for initialization
+    void Start () {
         razlika = transform.position.x - zaPracenje.transform.position.x;
         brzinaRotacije = 0.1f;
 
+        SmrtEkran = GameObject.Find("/Canvas/GameOver");
+        SmrtEkran.gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -25,6 +29,10 @@ public class Rotacija : MonoBehaviour {
             GetComponent<Renderer>().material.mainTextureOffset = offset;
 
             //Debug.Log(brzinaRotacije.ToString());
+        }
+        else
+        {
+            SmrtEkran.gameObject.SetActive(true);
         }
 	}
 
