@@ -9,6 +9,7 @@ public class UI : MonoBehaviour {
     public Text score;
     public Text inGameNHS;
     public Text nhs;
+    public Text reseted;
 
     public int UIbrojac;
 
@@ -20,6 +21,33 @@ public class UI : MonoBehaviour {
         {
             nhs.enabled = true;
         }
+        else
+        {
+            nhs.enabled = false;
+        }
+
+        reseted.enabled = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Again();
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))
+        {
+            PlayerPrefs.SetInt("HighScore", 0);
+            Debug.Log("Resetovan High Score");
+            reseted.enabled = true;
+            Invoke("vracanjeTeksta", 3f);
+        }
+    }
+
+    void vracanjeTeksta()
+    {
+        reseted.enabled = false;
     }
 
     public void Again()

@@ -6,23 +6,22 @@ using UnityEngine.UI;
 public class SmrtIgraca : MonoBehaviour {
 
     private Rotacija rotacija;
+    private Pomeranje pomeranje;
     
 
     private void Start()
     {
         rotacija = GameObject.FindObjectOfType<Rotacija>();
+        pomeranje = GameObject.FindObjectOfType<Pomeranje>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
-
             rotacija.smrt = true;
+            pomeranje.smrt = true;
             //collision.gameObject.SetActive(false);
-            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>;
-            rb.isKinematic();
             Debug.Log("Game Over");
         }
     }

@@ -15,9 +15,12 @@ public class Pomeranje : MonoBehaviour {
     public Text score;
     private int scoreBrojac;
     public Text nhs;
-    private UI uibr;
 
     public Animator animator;
+
+    public bool smrt;
+    private GameObject SmrtEkran;
+    private GameObject InGameEkran;
 
     // Use this for initialization
     void Start () {
@@ -26,7 +29,10 @@ public class Pomeranje : MonoBehaviour {
         score.text = scoreBrojac.ToString();
         nhs.enabled = false;
 
-        uibr = GameObject.FindObjectOfType<UI>();
+        smrt = false;
+        SmrtEkran = GameObject.Find("/Canvas/GameOver");
+        SmrtEkran.gameObject.SetActive(false);
+        InGameEkran = GameObject.Find("/Canvas/InGame");
     }
 	
 	// Update is called once per frame
@@ -36,28 +42,41 @@ public class Pomeranje : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //float ver = Input.GetAxis("Vertical");
-
-        if (Input.GetButton("Jump") && skociti)
+        if (!smrt)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jacinaSkoka);
-            //rb.AddForce((Vector2.up * jacinaSkoka), ForceMode2D.Impulse);
-            //rb.AddForce(new Vector2(rb.velocity.x, jacinaSkoka), ForceMode2D.Impulse);
-            rb.gravityScale = 0.001f;
-            Instantiate(efekat, transform.position, Quaternion.identity);
+            //float ver = Input.GetAxis("Vertical");
+
+            if (Input.GetButton("Jump") && skociti)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jacinaSkoka);
+                //rb.AddForce((Vector2.up * jacinaSkoka), ForceMode2D.Impulse);
+                //rb.AddForce(new Vector2(rb.velocity.x, jacinaSkoka), ForceMode2D.Impulse);
+                rb.gravityScale = 0.001f;
+                Instantiate(efekat, transform.position, Quaternion.identity);
+            }
+
+            rb.velocity = new Vector2(brzina, rb.velocity.y);
+            //rb.AddForce((new Vector2(hor, 0) * brzina));
+
+            if (rb.velocity.y < 0)
+            {
+                rb.gravityScale = 1;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (brzinaPada - 1) * Time.deltaTime;
+            }
+            else if (transform.position.y >= 1.6)
+            {
+                rb.gravityScale = 20;
+            }
         }
-
-        rb.velocity = new Vector2(brzina, rb.velocity.y);
-        //rb.AddForce((new Vector2(hor, 0) * brzina));
-
-        if(rb.velocity.y < 0)
+        else
         {
-            rb.gravityScale = 1;
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (brzinaPada - 1) * Time.deltaTime;
-        }
-        else if(transform.position.y >= 1.6)
-        {
-            rb.gravityScale = 20;
+            rb.bodyType = RigidbodyType2D.Static;
+
+            animator.SetBool("Smrt", true);
+
+            SmrtEkran.GetComponent<UI>().UIbrojac = scoreBrojac;
+            SmrtEkran.gameObject.SetActive(true);
+            InGameEkran.gameObject.SetActive(false);
         }
     }
 
@@ -84,10 +103,12 @@ public class Pomeranje : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Neprijatelj"))
         {
-            scoreBrojac++;
+            if (rb.bodyType == RigidbodyType2D.Dynamic)
+            {
+                scoreBrojac++;
+            }
             score.text = scoreBrojac.ToString();
             Debug.Log(scoreBrojac.ToString());
-            uibr.UIbrojac = scoreBrojac;
 
             if (scoreBrojac > PlayerPrefs.GetInt("HighScore"))//dodati restart hs-a
             {
