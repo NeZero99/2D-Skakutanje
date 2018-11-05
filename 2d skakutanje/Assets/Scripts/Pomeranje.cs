@@ -17,10 +17,15 @@ public class Pomeranje : MonoBehaviour {
     public Text nhs;
 
     public Animator animator;
-
+     [HideInInspector]
     public bool smrt;
     private GameObject SmrtEkran;
     private GameObject InGameEkran;
+    private bool prozvanaSmrt;
+
+    private AudioSource aus;
+
+    public GameObject zvezdice;
 
     // Use this for initialization
     void Start () {
@@ -33,11 +38,29 @@ public class Pomeranje : MonoBehaviour {
         SmrtEkran = GameObject.Find("/Canvas/GameOver");
         SmrtEkran.gameObject.SetActive(false);
         InGameEkran = GameObject.Find("/Canvas/InGame");
+
+        prozvanaSmrt = false;
+
+        aus = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (smrt)
+        {
+            rb.bodyType = RigidbodyType2D.Static;
 
+            animator.SetBool("Smrt", true);
+            if (!prozvanaSmrt)
+            {
+                Instantiate(zvezdice, new Vector3(transform.position.x, transform.position.y + 1), transform.rotation);
+                prozvanaSmrt = true;
+            }
+
+            SmrtEkran.GetComponent<UI>().UIbrojac = scoreBrojac;
+            SmrtEkran.gameObject.SetActive(true);
+            InGameEkran.gameObject.SetActive(false);
+        }
 	}
 
     private void FixedUpdate()
@@ -53,6 +76,8 @@ public class Pomeranje : MonoBehaviour {
                 //rb.AddForce(new Vector2(rb.velocity.x, jacinaSkoka), ForceMode2D.Impulse);
                 rb.gravityScale = 0.001f;
                 Instantiate(efekat, transform.position, Quaternion.identity);
+
+                aus.Play();
             }
 
             rb.velocity = new Vector2(brzina, rb.velocity.y);
@@ -67,16 +92,6 @@ public class Pomeranje : MonoBehaviour {
             {
                 rb.gravityScale = 20;
             }
-        }
-        else
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-
-            animator.SetBool("Smrt", true);
-
-            SmrtEkran.GetComponent<UI>().UIbrojac = scoreBrojac;
-            SmrtEkran.gameObject.SetActive(true);
-            InGameEkran.gameObject.SetActive(false);
         }
     }
 
