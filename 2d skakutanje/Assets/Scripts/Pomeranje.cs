@@ -11,6 +11,7 @@ public class Pomeranje : MonoBehaviour {
     public int jacinaSkoka;
     private bool skociti = true;
     public float brzinaPada = 2.5f;
+    private bool skokUnet;
 
     public Text score;
     private int scoreBrojac;
@@ -24,6 +25,7 @@ public class Pomeranje : MonoBehaviour {
     private bool prozvanaSmrt;
 
     private AudioSource aus;
+    private AudioSource brojac;
 
     public GameObject zvezdice;
 
@@ -33,6 +35,7 @@ public class Pomeranje : MonoBehaviour {
         scoreBrojac = 0;
         score.text = scoreBrojac.ToString();
         nhs.enabled = false;
+        skokUnet = false;
 
         smrt = false;
         SmrtEkran = GameObject.Find("/Canvas/GameOver");
@@ -42,6 +45,7 @@ public class Pomeranje : MonoBehaviour {
         prozvanaSmrt = false;
 
         aus = GetComponent<AudioSource>();
+        brojac = GameObject.Find("/Canvas/InGame").GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -54,12 +58,20 @@ public class Pomeranje : MonoBehaviour {
             if (!prozvanaSmrt)
             {
                 Instantiate(zvezdice, new Vector3(transform.position.x, transform.position.y + 1), transform.rotation);
+                //goscr.Play();
                 prozvanaSmrt = true;
             }
 
             SmrtEkran.GetComponent<UI>().UIbrojac = scoreBrojac;
             SmrtEkran.gameObject.SetActive(true);
             InGameEkran.gameObject.SetActive(false);
+        }
+
+        if (Input.GetButton("Jump") && skociti && !aus.isPlaying)
+        {
+            aus.Play();
+            Debug.Log("Zvuk emitovan");
+            skokUnet = true;
         }
 	}
 
@@ -69,7 +81,7 @@ public class Pomeranje : MonoBehaviour {
         {
             //float ver = Input.GetAxis("Vertical");
 
-            if (Input.GetButton("Jump") && skociti)
+            if (skokUnet)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jacinaSkoka);
                 //rb.AddForce((Vector2.up * jacinaSkoka), ForceMode2D.Impulse);
@@ -77,7 +89,7 @@ public class Pomeranje : MonoBehaviour {
                 rb.gravityScale = 0.001f;
                 Instantiate(efekat, transform.position, Quaternion.identity);
 
-                aus.Play();
+                skokUnet = false;
             }
 
             rb.velocity = new Vector2(brzina, rb.velocity.y);
@@ -121,6 +133,7 @@ public class Pomeranje : MonoBehaviour {
             if (rb.bodyType == RigidbodyType2D.Dynamic)
             {
                 scoreBrojac++;
+                brojac.Play();
             }
             score.text = scoreBrojac.ToString();
             Debug.Log(scoreBrojac.ToString());

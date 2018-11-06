@@ -16,6 +16,8 @@ public class Spawnowanje : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rotacija = GameObject.FindObjectOfType<Rotacija>();
+
+        //Debug.Log(gameObject.name);
 	}
 	
 	// Update is called once per frame
