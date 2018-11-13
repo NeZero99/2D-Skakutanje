@@ -29,6 +29,13 @@ public class Pomeranje : MonoBehaviour {
 
     public GameObject zvezdice;
 
+    [HideInInspector]
+    public static bool stScreen = true;
+    private bool iskljucenstScreen;
+
+    public GameObject StartSC;
+    private AudioSource audioSSC;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -46,6 +53,19 @@ public class Pomeranje : MonoBehaviour {
 
         aus = GetComponent<AudioSource>();
         brojac = GameObject.Find("/Canvas/InGame").GetComponent<AudioSource>();
+
+        
+        if(stScreen)
+        {
+            StartSC.SetActive(true);
+            audioSSC = StartSC.GetComponent<AudioSource>();
+            InGameEkran.SetActive(false);
+            iskljucenstScreen = false;
+        }
+        else
+        {
+            StartSC.SetActive(false);
+        }
     }
 	
 	// Update is called once per frame
@@ -67,17 +87,24 @@ public class Pomeranje : MonoBehaviour {
             InGameEkran.gameObject.SetActive(false);
         }
 
-        if (Input.GetButton("Jump") && skociti && !aus.isPlaying)
+        if (Input.GetButton("Jump") && skociti && !aus.isPlaying && transform.position.x > -5.85)
         {
             aus.Play();
             Debug.Log("Zvuk emitovan");
             skokUnet = true;
         }
+        if (!stScreen && !iskljucenstScreen)
+        {
+            //StartSC.SetActive(false);
+            Destroy(StartSC, 0.1f);
+            InGameEkran.SetActive(true);
+            iskljucenstScreen = true;
+        }
 	}
 
     private void FixedUpdate()
     {
-        if (!smrt)
+        if (!smrt && !stScreen)
         {
             //float ver = Input.GetAxis("Vertical");
 

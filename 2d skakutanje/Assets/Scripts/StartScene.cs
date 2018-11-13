@@ -9,18 +9,23 @@ public class StartScene : MonoBehaviour {
     public Text highscore;
     public Text reseted;
 
+    private AudioSource pocetak;
+
 	// Use this for initialization
 	void Start () {
         reseted.enabled = false;
         highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
-	}
+
+        pocetak = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Nova Scena");
-            SceneManager.LoadScene("MainScene");
+            pocetak.Play();
+            Pomeranje.stScreen = false;
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))

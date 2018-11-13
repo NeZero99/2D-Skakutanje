@@ -9,13 +9,13 @@ public class Rotacija : MonoBehaviour {
     private float razlika;
     public bool smrt = false;
 
+    private bool dostigao;
 
     // Use this for initialization
     void Start () {
-        razlika = transform.position.x - zaPracenje.transform.position.x;
         brzinaRotacije = 0.1f;
 
-
+        dostigao = false;
     }
 	
 	// Update is called once per frame
@@ -26,13 +26,22 @@ public class Rotacija : MonoBehaviour {
 
             GetComponent<Renderer>().material.mainTextureOffset = offset;
 
-            //Debug.Log(brzinaRotacije.ToString());
+            //Debug.Break();
         }
-	}
+
+        if (zaPracenje.transform.position.x > -5.85 && !dostigao)
+        {
+            razlika = transform.position.x - zaPracenje.transform.position.x;
+            dostigao = true;
+        }
+    }
 
     private void LateUpdate()
     {
-        transform.position = new Vector3((razlika + zaPracenje.transform.position.x), 2,13);
+        if (dostigao)
+        {
+            transform.position = new Vector3((razlika + zaPracenje.transform.position.x), 2, 13);
+        }
     }
 
     public void GasenjeRotacije()
