@@ -10,6 +10,8 @@ public class Spawnowanje : MonoBehaviour {
     public float pocetnoVremeStvaranja;
     public float opadajuceVreme;
     public float minVreme = 0.65f;
+    private int brojVisokih = 0;
+    private int rand;
 
     private Rotacija rotacija;
     //private Pomeranje pomeranje;
@@ -28,12 +30,35 @@ public class Spawnowanje : MonoBehaviour {
         {
             if (vremeStvaranja <= 0)
             {
-                int rand = Random.Range(0, mestaZaStvaranje.Length);
-                Instantiate(mestaZaStvaranje[rand], transform.position, Quaternion.identity);
+                
+                if(brojVisokih == 2)
+                {
+                    Debug.Log("Ne moze visokoooooooooooooooooooooo");
+                    Instantiate(mestaZaStvaranje[1], transform.position, Quaternion.identity);
+                    brojVisokih = 0;
+                }
+                else
+                {
+                    rand = Random.Range(0, mestaZaStvaranje.Length);
+                    Instantiate(mestaZaStvaranje[rand], transform.position, Quaternion.identity);
+                }
                 vremeStvaranja = pocetnoVremeStvaranja;
+
+                if (rand == 0)
+                {
+                    brojVisokih++;
+                }
+                else
+                {
+                    brojVisokih = 0;
+                }
                 if (pocetnoVremeStvaranja > minVreme)
                 {
                     pocetnoVremeStvaranja -= opadajuceVreme;
+                }
+                else
+                {
+                    Debug.Log("Minimalno vreme dostignuto");
                 }
             }
             else

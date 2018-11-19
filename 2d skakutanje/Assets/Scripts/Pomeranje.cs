@@ -7,11 +7,13 @@ public class Pomeranje : MonoBehaviour {
 
     private Rigidbody2D rb;
     public GameObject efekat;
-    public int brzina;
-    public int jacinaSkoka;
-    private bool skociti = true;
+    public float brzina;
+    public float jacinaSkoka;
+    [HideInInspector]
+    public bool skociti = true;
     public float brzinaPada = 2.5f;
-    private bool skokUnet;
+    [HideInInspector]
+    public bool skokUnet;
 
     public Text score;
     private int scoreBrojac;
@@ -25,7 +27,7 @@ public class Pomeranje : MonoBehaviour {
     private bool prozvanaSmrt;
 
     private AudioSource aus;
-    private AudioSource brojac;
+    private AudioSource[] brojac;
 
     public GameObject zvezdice;
 
@@ -52,10 +54,10 @@ public class Pomeranje : MonoBehaviour {
         prozvanaSmrt = false;
 
         aus = GetComponent<AudioSource>();
-        brojac = GameObject.Find("/Canvas/InGame").GetComponent<AudioSource>();
+        brojac = GameObject.Find("/Canvas/InGame").GetComponents<AudioSource>();
 
-        
-        if(stScreen)
+
+        if (stScreen)
         {
             StartSC.SetActive(true);
             audioSSC = StartSC.GetComponent<AudioSource>();
@@ -100,6 +102,8 @@ public class Pomeranje : MonoBehaviour {
             InGameEkran.SetActive(true);
             iskljucenstScreen = true;
         }
+
+        animator.SetFloat("yVel", rb.velocity.y);
 	}
 
     private void FixedUpdate()
@@ -129,7 +133,8 @@ public class Pomeranje : MonoBehaviour {
             }
             else if (transform.position.y >= 1.6)
             {
-                rb.gravityScale = 20;
+                //rb.gravityScale = 20;
+                rb.velocity = Vector2.up * 0;
             }
         }
     }
@@ -160,7 +165,17 @@ public class Pomeranje : MonoBehaviour {
             if (rb.bodyType == RigidbodyType2D.Dynamic)
             {
                 scoreBrojac++;
-                brojac.Play();
+                if (scoreBrojac % 10 == 0)
+                {
+                    brojac[0].Play();
+                }
+
+                if(scoreBrojac > 5)
+                {
+                    brzina += 0.15f;
+                    //brzinaPada += 0.09f;
+                    //jacinaSkoka += 0.01f;
+                }
             }
             score.text = scoreBrojac.ToString();
             Debug.Log(scoreBrojac.ToString());
@@ -168,6 +183,10 @@ public class Pomeranje : MonoBehaviour {
             if (scoreBrojac > PlayerPrefs.GetInt("HighScore"))//dodati restart hs-a
             {
                 PlayerPrefs.SetInt("HighScore", scoreBrojac);
+                if(nhs.enabled == false)
+                {
+                    brojac[1].Play();
+                }
                 nhs.enabled = true;
             }
         }

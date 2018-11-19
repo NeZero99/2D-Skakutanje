@@ -246,5 +246,5 @@ MonoBehaviour:
   - {fileID: 1863820138882748, guid: f11f3bfe98023704c894f03245209700, type: 2}
   - {fileID: 1644018293287354, guid: 8eeef95aa43ae994eb469c6728e829c2, type: 2}
   pocetnoVremeStvaranja: 2
-  opadajuceVreme: 0.05
-  minVreme: 0.4
+  opadajuceVreme: 0.04
+  minVreme: 1
