@@ -2049,7 +2049,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press Space to Start!
+  m_Text: Tap to Start!
 --- !u!222 &1290430616
 CanvasRenderer:
   m_ObjectHideFlags: 0
