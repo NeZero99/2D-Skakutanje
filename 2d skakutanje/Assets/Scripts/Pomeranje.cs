@@ -89,7 +89,7 @@ public class Pomeranje : MonoBehaviour {
             InGameEkran.gameObject.SetActive(false);
         }
 
-        if (Input.GetButton("Jump") && skociti && !aus.isPlaying && transform.position.x > -5.85)
+        if (Input.touchCount > 0 && skociti && !aus.isPlaying && transform.position.x > -5.85)
         {
             aus.Play();
             Debug.Log("Zvuk emitovan");
