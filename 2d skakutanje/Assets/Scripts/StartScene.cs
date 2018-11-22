@@ -11,6 +11,8 @@ public class StartScene : MonoBehaviour {
 
     private AudioSource pocetak;
 
+    private bool pusteno = false;
+
 	// Use this for initialization
 	void Start () {
         reseted.enabled = false;
@@ -21,11 +23,12 @@ public class StartScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.touchCount == 1 && !pocetak.isPlaying && !pusteno)
         {
             Debug.Log("Nova Scena");
             pocetak.Play();
             Pomeranje.stScreen = false;
+            pusteno = true;
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))

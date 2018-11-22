@@ -37,10 +37,12 @@ public class UI : MonoBehaviour {
     {
         trenutniHSprikaz.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*Touch dodir = Input.GetTouch(0);
+
+        if (dodir.phase == TouchPhase.Began)
         {
             Again();
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))
         {

@@ -28,6 +28,7 @@ public class Pomeranje : MonoBehaviour {
 
     private AudioSource aus;
     private AudioSource[] brojac;
+    private bool pustenAUS = false;
 
     public GameObject zvezdice;
 
@@ -37,6 +38,8 @@ public class Pomeranje : MonoBehaviour {
 
     public GameObject StartSC;
     private AudioSource audioSSC;
+
+    private Touch dodir;
 
     // Use this for initialization
     void Start () {
@@ -89,9 +92,20 @@ public class Pomeranje : MonoBehaviour {
             InGameEkran.gameObject.SetActive(false);
         }
 
-        if (Input.touchCount > 0 && skociti && !aus.isPlaying && transform.position.x > -5.85)
+        /*if(Input.touchCount > 0)
+        {
+            dodir = Input.GetTouch(0);
+        }*/
+
+        if(transform.position.y >= 1.6)
+        {
+            pustenAUS = false;
+        }
+
+        if (Input.touchCount == 1 && skociti && !aus.isPlaying && !pustenAUS && transform.position.x > -5.85)
         {
             aus.Play();
+            pustenAUS = true;
             Debug.Log("Zvuk emitovan");
             skokUnet = true;
         }
