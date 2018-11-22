@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class UI : MonoBehaviour {
 
@@ -62,6 +63,19 @@ public class UI : MonoBehaviour {
 
     public void Again()
     {
+        /*var opcije = new ShowOptions
+        {
+            resultCallback = 
+        }
+        if (Advertisement.IsReady("video"))
+        {
+            Advertisement.Show("video", opcije);
+        }
+        if (opcije.resultCallback == ShowResult.Finished)
+        {
+            zvuci[1].Play();
+            SceneManager.LoadScene("MainScene");
+        }*/
         zvuci[1].Play();
         SceneManager.LoadScene("MainScene");
     }
