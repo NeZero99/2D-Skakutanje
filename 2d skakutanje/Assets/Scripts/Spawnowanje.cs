@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 
 public class Spawnowanje : MonoBehaviour {
 
@@ -26,7 +27,7 @@ public class Spawnowanje : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!rotacija.smrt && !Pomeranje.stScreen)
+        if (!rotacija.smrt && !Pomeranje.stScreen && !Advertisement.isShowing)
         {
             if (vremeStvaranja <= 0)
             {

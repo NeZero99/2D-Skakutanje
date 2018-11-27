@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class Pomeranje : MonoBehaviour {
 
@@ -71,6 +72,8 @@ public class Pomeranje : MonoBehaviour {
         {
             StartSC.SetActive(false);
         }
+
+        //Advertisement.Show("banner");
     }
 	
 	// Update is called once per frame
@@ -91,11 +94,6 @@ public class Pomeranje : MonoBehaviour {
             SmrtEkran.gameObject.SetActive(true);
             InGameEkran.gameObject.SetActive(false);
         }
-
-        /*if(Input.touchCount > 0)
-        {
-            dodir = Input.GetTouch(0);
-        }*/
 
         if(transform.position.y >= 1.6)
         {
@@ -122,7 +120,7 @@ public class Pomeranje : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (!smrt && !stScreen)
+        if (!smrt && !stScreen && !Advertisement.isShowing)
         {
             //float ver = Input.GetAxis("Vertical");
 

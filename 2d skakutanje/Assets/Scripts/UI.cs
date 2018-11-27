@@ -17,6 +17,8 @@ public class UI : MonoBehaviour {
 
     private AudioSource[] zvuci;
 
+    static int brPlayAg = 0;
+
     private void Start()
     {
         score.text = UIbrojac.ToString();
@@ -38,13 +40,6 @@ public class UI : MonoBehaviour {
     {
         trenutniHSprikaz.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
-        /*Touch dodir = Input.GetTouch(0);
-
-        if (dodir.phase == TouchPhase.Began)
-        {
-            Again();
-        }*/
-
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))
         {
             PlayerPrefs.SetInt("HighScore", 0);
@@ -63,19 +58,17 @@ public class UI : MonoBehaviour {
 
     public void Again()
     {
-        /*var opcije = new ShowOptions
+        Debug.Log("broj replaya: " + brPlayAg.ToString() + " ostatak: " + (brPlayAg % 3).ToString());
+        if (brPlayAg % 3 == 0)// ne radii ovaj deo, treba da prikazuje reklamuu svaki treci put
         {
-            resultCallback = 
+            int temp = brPlayAg;
+            if (Advertisement.IsReady("video"))
+            {
+                Advertisement.Show("video");
+                temp++;
+                brPlayAg = temp;
+            }
         }
-        if (Advertisement.IsReady("video"))
-        {
-            Advertisement.Show("video", opcije);
-        }
-        if (opcije.resultCallback == ShowResult.Finished)
-        {
-            zvuci[1].Play();
-            SceneManager.LoadScene("MainScene");
-        }*/
         zvuci[1].Play();
         SceneManager.LoadScene("MainScene");
     }
