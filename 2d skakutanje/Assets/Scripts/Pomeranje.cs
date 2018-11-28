@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using UnityEngine.Analytics;
 
 public class Pomeranje : MonoBehaviour {
 
@@ -17,7 +18,8 @@ public class Pomeranje : MonoBehaviour {
     public bool skokUnet;
 
     public Text score;
-    private int scoreBrojac;
+    [HideInInspector]
+    public int scoreBrojac;
     public Text nhs;
 
     public Animator animator;
@@ -42,6 +44,8 @@ public class Pomeranje : MonoBehaviour {
 
     private Touch dodir;
 
+    private AnalyticsEventTracker analitikaScora;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -59,6 +63,8 @@ public class Pomeranje : MonoBehaviour {
 
         aus = GetComponent<AudioSource>();
         brojac = GameObject.Find("/Canvas/InGame").GetComponents<AudioSource>();
+
+        analitikaScora = GetComponent<AnalyticsEventTracker>();
 
 
         if (stScreen)
@@ -177,6 +183,7 @@ public class Pomeranje : MonoBehaviour {
             if (rb.bodyType == RigidbodyType2D.Dynamic)
             {
                 scoreBrojac++;
+                analitikaScora.TriggerEvent();
                 if (scoreBrojac % 10 == 0)
                 {
                     brojac[0].Play();

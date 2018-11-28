@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using UnityEngine.Analytics;
 
 public class UI : MonoBehaviour {
 
@@ -12,19 +13,23 @@ public class UI : MonoBehaviour {
     public Text nhs;
     public Text reseted;
     public Text trenutniHSprikaz;
-
+    [HideInInspector]
     public int UIbrojac;
 
     private AudioSource[] zvuci;
 
     static int brPlayAg = 0;
 
+    private AnalyticsEventTracker analitikaHighScora;
+
     private void Start()
     {
+        analitikaHighScora = GetComponent<AnalyticsEventTracker>();
         score.text = UIbrojac.ToString();
         if (inGameNHS.enabled == true)
         {
             nhs.enabled = true;
+            analitikaHighScora.TriggerEvent();
         }
         else
         {
@@ -34,6 +39,8 @@ public class UI : MonoBehaviour {
         reseted.enabled = false;
 
         zvuci = GetComponents<AudioSource>();
+
+        brPlayAg++;
     }
 
     void Update()
@@ -61,12 +68,10 @@ public class UI : MonoBehaviour {
         Debug.Log("broj replaya: " + brPlayAg.ToString() + " ostatak: " + (brPlayAg % 3).ToString());
         if (brPlayAg % 3 == 0)// ne radii ovaj deo, treba da prikazuje reklamuu svaki treci put
         {
-            int temp = brPlayAg;
             if (Advertisement.IsReady("video"))
             {
                 Advertisement.Show("video");
-                temp++;
-                brPlayAg = temp;
+                //brPlayAg++;
             }
         }
         zvuci[1].Play();

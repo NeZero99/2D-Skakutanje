@@ -1434,6 +1434,7 @@ GameObject:
   - component: {fileID: 971196126}
   - component: {fileID: 971196125}
   - component: {fileID: 971196124}
+  - component: {fileID: 971196127}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1512,6 +1513,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 971196127}
+        m_MethodName: TriggerEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &971196125
@@ -1550,6 +1562,64 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 971196122}
   m_CullTransparentMesh: 0
+--- !u!114 &971196127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 971196122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 1
+    m_LifecycleEvent: 0
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 5
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: CustomEvent
+    m_Parameters:
+      m_Parameters:
+      - m_RequirementType: 0
+        m_GroupID: 
+        m_Tooltip: 
+        m_Name: Button
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 0
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 1
+          m_ValueType: System.String
+          m_Value: PlayAgain
+          m_Target:
+            m_Target: {fileID: 0}
+            m_Path: 
+            m_ValidTypeNames:
+            - System.Int32
+            - System.Boolean
+            - System.Decimal
+            - System.Double
+            - System.Single
+            - System.Int64
+            - System.Int16
+            - System.String
+            m_Type: System.String
+            m_EnumType: 
+    m_Name: GameOverButton
 --- !u!1 &1028698165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,6 +1788,7 @@ GameObject:
   - component: {fileID: 1239648253}
   - component: {fileID: 1239648254}
   - component: {fileID: 1239648255}
+  - component: {fileID: 1239648256}
   m_Layer: 0
   m_Name: Igrac
   m_TagString: Player
@@ -1740,7 +1811,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 1543435374}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1864,6 +1935,7 @@ MonoBehaviour:
   brzinaPada: 9.5
   skokUnet: 0
   score: {fileID: 1028698167}
+  scoreBrojac: 0
   nhs: {fileID: 100427674}
   animator: {fileID: 1239648254}
   smrt: 0
@@ -1982,6 +2054,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1239648256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1239648248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 0
+    m_LifecycleEvent: 0
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 5
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: CustomEvent
+    m_Parameters:
+      m_Parameters:
+      - m_RequirementType: 0
+        m_GroupID: 
+        m_Tooltip: 
+        m_Name: Score
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 0
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 2
+          m_ValueType: System.Int32
+          m_Value: 
+          m_Target:
+            m_Target: {fileID: 1239648253}
+            m_Path: scoreBrojac
+            m_ValidTypeNames:
+            - System.Int32
+            - System.Boolean
+            - System.Decimal
+            - System.Double
+            - System.Single
+            - System.Int64
+            - System.Int16
+            - System.String
+            - enum
+            m_Type: System.Int32
+            m_EnumType: 
+    m_Name: PlayerScore
 --- !u!1 &1290430613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2464,43 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1502287648}
   m_CullTransparentMesh: 0
+--- !u!21 &1543435374
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites-Default (Instance) (Instance)
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DecalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1552788556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,6 +2815,7 @@ GameObject:
   - component: {fileID: 1863151443}
   - component: {fileID: 1863151442}
   - component: {fileID: 1863151441}
+  - component: {fileID: 1863151444}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -2725,6 +2894,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1863151444}
+        m_MethodName: TriggerEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1863151442
@@ -2763,6 +2943,64 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1863151439}
   m_CullTransparentMesh: 0
+--- !u!114 &1863151444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1863151439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 1
+    m_LifecycleEvent: 0
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 5
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: CustomEvent
+    m_Parameters:
+      m_Parameters:
+      - m_RequirementType: 0
+        m_GroupID: 
+        m_Tooltip: 
+        m_Name: Button
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 0
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 1
+          m_ValueType: System.String
+          m_Value: Exit
+          m_Target:
+            m_Target: {fileID: 0}
+            m_Path: 
+            m_ValidTypeNames:
+            - System.Int32
+            - System.Boolean
+            - System.Decimal
+            - System.Double
+            - System.Single
+            - System.Int64
+            - System.Int16
+            - System.String
+            m_Type: System.String
+            m_EnumType: 
+    m_Name: GameOverButton
 --- !u!1 &1984544595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,6 +3057,7 @@ GameObject:
   - component: {fileID: 2055036767}
   - component: {fileID: 2055036768}
   - component: {fileID: 2055036769}
+  - component: {fileID: 2055036770}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -3128,6 +3367,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2055036770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055036765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 0
+    m_LifecycleEvent: 0
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 5
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: CustomEvent
+    m_Parameters:
+      m_Parameters:
+      - m_RequirementType: 0
+        m_GroupID: 
+        m_Tooltip: 
+        m_Name: NewHighScore
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 0
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 2
+          m_ValueType: System.Int32
+          m_Value: 
+          m_Target:
+            m_Target: {fileID: 2055036766}
+            m_Path: UIbrojac
+            m_ValidTypeNames:
+            - System.Int32
+            - System.Boolean
+            - System.Decimal
+            - System.Double
+            - System.Single
+            - System.Int64
+            - System.Int16
+            - System.String
+            - enum
+            m_Type: System.Int32
+            m_EnumType: 
+    m_Name: HighScore
 --- !u!1 &2065985975
 GameObject:
   m_ObjectHideFlags: 0

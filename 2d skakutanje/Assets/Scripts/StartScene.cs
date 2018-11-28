@@ -19,6 +19,7 @@ public class StartScene : MonoBehaviour {
         highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
         pocetak = GetComponent<AudioSource>();
+        resetovanjeSkora();
     }
 	
 	// Update is called once per frame
@@ -33,16 +34,21 @@ public class StartScene : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))
         {
-            PlayerPrefs.SetInt("HighScore", 0);
-            Debug.Log("Resetovan High Score");
-            highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
-            reseted.enabled = true;
-            Invoke("vracanjeTeksta", 3f);
+            resetovanjeSkora();
         }
     }
 
-    void vracanjeTeksta()
+    private void vracanjeTeksta()
     {
         reseted.enabled = false;
+    }
+
+    private void resetovanjeSkora()
+    {
+        PlayerPrefs.SetInt("HighScore", 0);
+        Debug.Log("Resetovan High Score");
+        highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+        reseted.enabled = true;
+        Invoke("vracanjeTeksta", 3f);
     }
 }
