@@ -5,12 +5,12 @@ using UnityEngine;
 public class SpawnMesto : MonoBehaviour {
 
     public GameObject zaStvaranje;
-    private Pomeranje pom;
+    //private Pomeranje pom;
 
 	// Use this for initialization
 	void Start () {
         Instantiate(zaStvaranje, transform.position, Quaternion.identity);
-        pom = FindObjectOfType<Pomeranje>();
+        //pom = FindObjectOfType<Pomeranje>();
     }
 	
 	// Update is called once per frame

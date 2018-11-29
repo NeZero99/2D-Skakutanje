@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.Analytics;
+using TMPro;
 
 public class UI : MonoBehaviour {
 
-    public Text score;
-    public Text inGameNHS;
-    public Text nhs;
+    public TextMeshProUGUI score;
+    public TextMeshProUGUI inGameNHS;
+    public TextMeshProUGUI nhs;
     public Text reseted;
     public Text trenutniHSprikaz;
     [HideInInspector]

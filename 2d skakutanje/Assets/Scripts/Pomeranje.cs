@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.Analytics;
+using TMPro;
 
 public class Pomeranje : MonoBehaviour {
 
@@ -17,10 +18,10 @@ public class Pomeranje : MonoBehaviour {
     [HideInInspector]
     public bool skokUnet;
 
-    public Text score;
+    public TextMeshProUGUI score;
     [HideInInspector]
     public int scoreBrojac;
-    public Text nhs;
+    public TextMeshProUGUI nhs;
 
     public Animator animator;
      [HideInInspector]
@@ -40,7 +41,7 @@ public class Pomeranje : MonoBehaviour {
     private bool iskljucenstScreen;
 
     public GameObject StartSC;
-    private AudioSource audioSSC;
+    //private AudioSource audioSSC;
 
     private Touch dodir;
 
@@ -70,7 +71,7 @@ public class Pomeranje : MonoBehaviour {
         if (stScreen)
         {
             StartSC.SetActive(true);
-            audioSSC = StartSC.GetComponent<AudioSource>();
+            //audioSSC = StartSC.GetComponent<AudioSource>();
             InGameEkran.SetActive(false);
             iskljucenstScreen = false;
         }
@@ -199,7 +200,7 @@ public class Pomeranje : MonoBehaviour {
             score.text = scoreBrojac.ToString();
             Debug.Log(scoreBrojac.ToString());
 
-            if (scoreBrojac > PlayerPrefs.GetInt("HighScore"))//dodati restart hs-a
+            if (scoreBrojac > PlayerPrefs.GetInt("HighScore"))
             {
                 PlayerPrefs.SetInt("HighScore", scoreBrojac);
                 if(nhs.enabled == false)

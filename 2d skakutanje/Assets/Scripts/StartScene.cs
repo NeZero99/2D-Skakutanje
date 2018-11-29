@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StartScene : MonoBehaviour {
 
-    public Text highscore;
+    public TextMeshProUGUI highscore;
     public Text reseted;
 
     private AudioSource pocetak;
@@ -19,7 +20,6 @@ public class StartScene : MonoBehaviour {
         highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
         pocetak = GetComponent<AudioSource>();
-        resetovanjeSkora();
     }
 	
 	// Update is called once per frame
