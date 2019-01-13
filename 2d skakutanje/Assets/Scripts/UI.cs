@@ -31,6 +31,8 @@ public class UI : MonoBehaviour {
         {
             nhs.enabled = true;
             analitikaHighScora.TriggerEvent();
+
+            PlayServices.servisi.dodavanjeSkoraUTabelu("CggIxK7n5R8QAhAB", UIbrojac);
         }
         else
         {
