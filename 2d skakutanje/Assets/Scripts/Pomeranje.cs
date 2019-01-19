@@ -43,8 +43,6 @@ public class Pomeranje : MonoBehaviour {
     public GameObject StartSC;
     //private AudioSource audioSSC;
 
-    private Touch dodir;
-
     private AnalyticsEventTracker analitikaScora;
 
     // Use this for initialization
@@ -203,7 +201,10 @@ public class Pomeranje : MonoBehaviour {
             if (scoreBrojac > PlayerPrefs.GetInt("HighScore"))
             {
                 PlayerPrefs.SetInt("HighScore", scoreBrojac);
-                if(nhs.enabled == false)
+                PlayServices.servisi.dodavanjeSkoraUTabelu("CggIxK7n5R8QAhAB", scoreBrojac);
+                PlayServices.servisi.OpenSave(true);
+
+                if (nhs.enabled == false)
                 {
                     brojac[1].Play();
                 }
