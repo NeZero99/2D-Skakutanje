@@ -4363,7 +4363,7 @@ GameObject:
   - component: {fileID: 2133174185}
   m_Layer: 0
   m_Name: Servisi
-  m_TagString: Untagged
+  m_TagString: serv
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

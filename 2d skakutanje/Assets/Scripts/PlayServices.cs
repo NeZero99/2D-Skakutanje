@@ -10,6 +10,7 @@ using System;
 public class PlayServices : MonoBehaviour {
 
     public static PlayServices servisi;
+    private GameObject pocetniEkran;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class PlayServices : MonoBehaviour {
 
     private void Start()
     {
+        pocetniEkran = GameObject.Find("/Canvas/Start Scene");
+
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
 
         PlayGamesPlatform.InitializeInstance(config);
@@ -95,7 +98,14 @@ public class PlayServices : MonoBehaviour {
         if (status == SavedGameRequestStatus.Success)
         {
             string saveData = System.Text.ASCIIEncoding.ASCII.GetString(data);
-            PlayerPrefs.SetInt("HighScore", Convert.ToInt32(data));
+            PlayerPrefs.SetInt("HighScore", int.Parse(saveData));
+            Debug.Log("Valjda uspesno ucitano sa clouda u playerprefs hs");
+
+            if (pocetniEkran.activeSelf)
+            {
+                pocetniEkran.GetComponent<StartScene>().postavljanjeHS();
+                Debug.Log("Postavljeno na pocetni ekran nakon loada");
+            }
         }
     }
 

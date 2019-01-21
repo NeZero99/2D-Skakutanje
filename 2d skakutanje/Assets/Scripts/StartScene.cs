@@ -21,6 +21,11 @@ public class StartScene : MonoBehaviour {
 
         pocetak = GetComponent<AudioSource>();
     }
+
+    public void postavljanjeHS()
+    {
+        highscore.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+    }
 	
 	// Update is called once per frame
 	void Update () {
